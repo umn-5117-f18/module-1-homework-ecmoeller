@@ -4,18 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-certifi = "==2018.8.24"
-click = "==6.7"
-itsdangerous = "==0.24"
-pipenv = "==2018.7.1"
-pytz = "==2018.5"
-virtualenv = "==16.0.0"
-virtualenv-clone = "==0.3.0"
-Django = "==2.1.1"
-Flask = "==1.0.2"
-"Jinja2" = "==2.10"
-MarkupSafe = "==1.0"
-Werkzeug = "==0.14.1"
+flask = "*"
+gunicorn = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 
