@@ -7,9 +7,9 @@ import db
 
 app = Flask(__name__)
 
-#@app.before_first_request
-#def initialize():
-    #db.setup()
+@app.before_first_request
+def initialize():
+    db.setup()
 
 @app.route("/")
 def home():

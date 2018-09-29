@@ -9,12 +9,12 @@
   <title>{% block title %}{% endblock %} </title>
 </head>
 <body style="">
-  <div id="menu">
-    <a href="{{ url_for("home") }}">home</a>
-    |
-    <a href="{{ url_for("survey") }}">survey</a>
-    |
+  <div id="menu" class="pure-menu pure-menu-horizontal">
+<ul class="pure-menu-list">
+    <li class="pure-menu-item"><a href="{{ url_for("home") }}" class="pure-menu-link">Home</a></li>
+    <li class="pure-menu-item"><a href="{{ url_for("survey") }}" class="pure-menu-link">Survey</a></li>
     <!--<a href="{{ url_for("api_foo") }}">api (foo)</a>-->
+</ul>
   </div>
   <div id="content" style="">{% block content %}{% endblock %}</div>
 </body>
