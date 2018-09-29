@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>Survey</title>
-		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 
-		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
 
-		 <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+{% block content %}
+<h1> Would you like to take a survey? </h1>
+<a href="/survey" class="pure-button"> Yes!</a>
+<a href="/decline" class="pure-button"> No, thank you.</a>
 
-	 	 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
-		 <link rel="stylesheet" href="static/css/layouts/marketing.css">
-
-	   </head>
-	   <body>
-		   <h1> Would you like to take a survey? </h1>
-		   <a href="/survey" class="pure-button"> Yes!</a>
-		   <a href="/decline" class="pure-button"> No, thank you.</a>
-	   </body>
-	   </html>
-
+{% endblock %}
