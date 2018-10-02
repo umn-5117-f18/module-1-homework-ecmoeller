@@ -7,9 +7,9 @@ import db
 
 app = Flask(__name__)
 
-@app.before_first_request
-def initialize():
-    db.setup()
+#@app.before_first_request
+#def initialize():
+#    db.setup()
 
 @app.route("/")
 def home():
@@ -28,8 +28,8 @@ def thanks():
             return render_template("thanks.html")
 
 #TODO This entire method needs to be changed
-@app.route('/api/foo')
-def api_foo():
+@app.route('/api/results')
+def api_results():
     data = {
         "message": "hello, world",
         "isAGoodExample": False,

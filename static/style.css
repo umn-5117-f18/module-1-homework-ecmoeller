@@ -4,6 +4,20 @@ body #menu {
   /* background-color: pink; */
 }
 
+
 #content {
   margin: 50px;
+}
+
+.img-with-text {
+    text-align: center; /* justify */
+    width: 540px;
+}
+
+.img-with-text img {
+    display: block;
+    margin: 0 auto;
+    width:300px; /* you can use % 540 */
+    height: auto;
+
 }

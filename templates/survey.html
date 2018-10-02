@@ -8,36 +8,65 @@
 <form class="pure-form pure-form-stacked" action="thanks">
 	<fieldset>
 
-		<label for="text" class="pure-text"> This is the text input
-			<input type="text" placeholder="text input" required />
+		<label for="text" class="pure-text">1. What is your favorite breed of dog?
+			<input type="text" placeholder="Breed" required />
 		</label>
 
-		<label for="radio" class="pure-radio"> Favorite photo of dog?
+		<br>
+
+    <div class="row">
+			<div class="img-with-text">
+    		<img class="pure-img" src="static/lab.jpg">
+				<p> Option 1 </p>
+			</div>
+
+			<div class="img-with-text">
+				<img class="pure-img" src="static/cavalier.jpg">
+				<p> Option 2 </p>
+			</div>
+
+			<div class="img-with-text">
+				<img class="pure-img" src="static/corgi.jpg">
+				<p> Option 3 </p>
+			</div>
+
+	  </div>
+
+		<br>
+
+		<label for="radio" class="pure-radio">2. Which is your favorite photo of a dog?
 			<br>
 			<input type="radio" value="Option 1"/> Option 1
 			<input type="radio" value="Option 2"/> Option 2
 			<input type="radio" value="Option 3"/> Option 3
 		</label>
 
-		<label for="selectbox" class="pure-selectbox"> This is the selectbox
-			 <select name="cars">
-					 <option value="volvo">Volvo</option>
-					 <option value="saab">Saab</option>
-					 <option value="fiat">Fiat</option>
-					 <option value="audi">Audi</option>
+		<br>
+
+		<label for="selectbox" class="pure-selectbox">3. Do you have a dog?
+			 <select name="HaveDog">
+					 <option value="Yes">Yes.</option>
+					 <option value="No">No, but I want a dog.</option>
+					 <option value="fiat">No.</option>
 			 </select>
 		</label>
 
+		<br>
 
-		<label for="checkbox" id="secret" class="pure-checkbox" onclick="showlastQ()"> Would you like to see the secret question?
+		<label for="checkbox" id="secret" class="pure-checkbox" onclick="showlastQ()">4. Would you like to see the secret question?
 
 			<input type="checkbox"/> Yes.
 		</label>
 
-		<label for="checkbox" id="lastQ"  class="pure-checkbox" style="display:none"> Did you enjoy this quiz?
+		<br>
+
+		<label for="checkbox" id="lastQ"  class="pure-checkbox" style="display:none">5. Are you a dog person?
 
 			<input type="checkbox" name="enjoy"/> Yes.
+			<input type="checkbox" name="enjoy"/> No.
 		</label>
+
+		<br>
 
 		<button type="submit" class="pure-button pure-button-primary">Submit survey</button>
 	</fieldset>
