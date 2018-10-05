@@ -1,16 +1,12 @@
-drop table person;
-drop table skill;
+drop table survey;
 
-create table person(
+create table survey(
   person_id SERIAL PRIMARY KEY,
-  name varchar(255)
+  q1 varchar(255),
+  q2 varchar(255),
+  q3 varchar(255),
+  q4 varchar(255),
+  q5 varchar(255)
 );
 
-create table skill(
-  skill_id SERIAL PRIMARY KEY,
-  person_id int references person,
-  skill varchar(255)
-);
-
-insert into person (name) values ('max');
-insert into person (name) values ('hao fei');
+insert into survey (q1, q2, q3, q4, q5) values ('a', 'b', 'c', 'd', 'e');

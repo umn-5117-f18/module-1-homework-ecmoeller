@@ -5,11 +5,11 @@
 {% block content %}
 
 <h1> Welcome to the Survey</h1>
-<form class="pure-form pure-form-stacked" action="thanks">
+<form class="pure-form pure-form-stacked" method="post" action="thanks" >
 	<fieldset>
 
 		<label for="text" class="pure-text">1. What is your favorite breed of dog?
-			<input type="text" placeholder="Breed" required />
+			<input type="text" name="q1" placeholder="Breed" required />
 		</label>
 
 		<br>
@@ -36,15 +36,15 @@
 
 		<label for="radio" class="pure-radio">2. Which is your favorite photo of a dog?
 			<br>
-			<input type="radio" value="Option 1"/> Option 1
-			<input type="radio" value="Option 2"/> Option 2
-			<input type="radio" value="Option 3"/> Option 3
+			<input type="radio" name ="q2" value="Option 1"/> Option 1
+			<input type="radio" name="q2" value="Option 2"/> Option 2
+			<input type="radio" name="q2" value="Option 3"/> Option 3
 		</label>
 
 		<br>
 
 		<label for="selectbox" class="pure-selectbox">3. Do you have a dog?
-			 <select name="HaveDog">
+			 <select name="q3">
 					 <option value="Yes">Yes.</option>
 					 <option value="No">No, but I want a dog.</option>
 					 <option value="fiat">No.</option>
@@ -55,15 +55,15 @@
 
 		<label for="checkbox" id="secret" class="pure-checkbox" onclick="showlastQ()">4. Would you like to see the secret question?
 
-			<input type="checkbox"/> Yes.
+			<input name ="q4" type="checkbox" value="Yes"/> Yes.
 		</label>
 
 		<br>
 
 		<label for="checkbox" id="lastQ"  class="pure-checkbox" style="display:none">5. Are you a dog person?
 
-			<input type="checkbox" name="enjoy"/> Yes.
-			<input type="checkbox" name="enjoy"/> No.
+			<input type="checkbox" name="q5" value="Yes"/> Yes.
+			<input type="checkbox" name="q5" value="No"/> No.
 		</label>
 
 		<br>
@@ -79,7 +79,7 @@ function showlastQ() {
 
 		document.getElementById('lastQ').style.display = "block";
 	 }else{
-	document.getElementById('lastQ').style.display = "none";
+		 document.getElementById('lastQ').style.display = "none";
 	 }
 
 }
