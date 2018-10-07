@@ -21,7 +21,7 @@ def survey():
 
 @app.route("/decline")
 def decline():
-            return render_template("decline.html")
+        return render_template("decline.html")
 
 @app.route("/thanks", methods=['GET', 'POST'])
 def thanks():
@@ -40,7 +40,6 @@ def thanks():
         with db.get_db_cursor(commit=True) as cur:
             cur.execute("insert into survey (q1, q2, q3, q4, q5) values (%s, %s, %s, %s, %s)", (q1, q2, q3, q4, q5,))
 
-        app.logger.info("Does it make it here")
         return redirect(url_for("thanks"))
     else:
         return render_template("thanks.html")
@@ -49,15 +48,34 @@ def thanks():
 #TODO This entire method needs to be changed
 @app.route('/api/results')
 def api_results():
-    data = {
-        "message": "hello, world",
-        "isAGoodExample": False,
-        "aList": [1, 2, 3],
-        "nested": {
-            "key": "value"
-        }
-    }
-    return jsonify(data)
+
+    reverse = request.args.get('reverse')
+
+    with db.get_db_cursor(commit=True) as cur:
+        query = "SELECT * FROM survey"
+        cur.execute(query)
+        result = cur.fetchall()
+        items = []
+
+        app.logger.info(f"Reverse is {reverse}")
+        if(reverse == 'true'):
+            app.logger.info(f"In the reverse")
+            for row in reversed(result):
+                i = 0
+                for key in cur.description:
+                    items.append({key[0]: row[i]})
+                    i = i + 1
+
+        else:
+            app.logger.info(f"In normal")
+            for row in result:
+                i = 0
+                for key in cur.description:
+                    items.append({key[0]: row[i]})
+                    i = i + 1
+
+
+        return jsonify({'Responses': items})
 
 
 if __name__ == "__main__":
