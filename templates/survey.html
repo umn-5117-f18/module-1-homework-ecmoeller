@@ -45,25 +45,34 @@
 
 		<label for="selectbox" class="pure-selectbox">3. Do you have a dog?
 			 <select name="q3">
-					 <option value="Yes">Yes.</option>
-					 <option value="No">No, but I want a dog.</option>
-					 <option value="fiat">No.</option>
+					 <option value="Yes.">Yes.</option>
+					 <option value="No, but I want a dog.">No, but I want a dog.</option>
+					 <option value="No.">No.</option>
 			 </select>
 		</label>
 
 		<br>
 
-		<label for="checkbox" id="secret" class="pure-checkbox" onclick="showlastQ()">4. Would you like to see the secret question?
+		<label for="checkbox" class="pure-checkbox" >4. Do you have any other pets?
 
 			<input name ="q4" type="checkbox" value="Yes"/> Yes.
+			<input name ="q4" type="checkbox" value="No"/> No.
 		</label>
 
 		<br>
 
-		<label for="checkbox" id="lastQ"  class="pure-checkbox" style="display:none">5. Are you a dog person?
+		<label for="radio" id="secret" class="pure-radio" >5. Would you like to see the secret question?
 
-			<input type="checkbox" name="q5" value="Yes"/> Yes.
-			<input type="checkbox" name="q5" value="No"/> No.
+			<input name ="q5" type="radio" value="Yes" onclick="showlastQ()"/> Yes.
+			<input name ="q5" type="radio" value="No"/> No.
+		</label>
+
+		<br>
+
+		<label for="checkbox" id="lastQ"  class="pure-checkbox" style="display:none">6. Are you a dog person?
+
+			<input type="checkbox" name="q6" value="Yes"/> Yes.
+			<input type="checkbox" name="q6" value="No"/> No.
 		</label>
 
 		<br>

@@ -6,7 +6,6 @@ create table survey(
   q2 varchar(255),
   q3 varchar(255),
   q4 varchar(255),
-  q5 varchar(255)
+  q5 varchar(255),
+  q6 varchar(255)
 );
-
-insert into survey (q1, q2, q3, q4, q5) values ('a', 'b', 'c', 'd', 'e');

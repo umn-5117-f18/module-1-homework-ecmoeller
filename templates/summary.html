@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+{% block title %}Summary{% endblock %}
+
+{% block content %}
+<h1>Summary of the data</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+	<script src="../../utils.js"></script>
+	<style>
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+
+
+  <!-- Question 1 -->
+  <h3> What is your favorite breed of dog?</h3>
+
+  <ul>
+    {% for n in q1 %}
+      <li>{{ n[0] }}</li>
+    {% endfor %}
+  </ul>
+
+
+<!-- Question 2 -->
+<canvas id="myChart"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+ctx.canvas.width = 1000;
+ctx.canvas.height = 300;
+
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ["Option 1", "Option 2", "Option 3"],
+        datasets: [{
+            label: "Which is your favorite photo of a dog?",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{{q2[0][0]}}, {{q2[1][0]}}, {{q2[2][0]}}],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Frequency'
+          }
+        }]
+      }
+    }
+});
+</script>
+
+
+<br>
+<br>
+
+<!-- Question 3 -->
+<canvas id="myChart2"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart2').getContext('2d');
+ctx.canvas.width = 1000;
+ctx.canvas.height = 300;
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ["Yes", "No, but I want a dog", "No"],
+        datasets: [{
+            label: "Do you have a dog?",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{{q3[0][0]}}, {{q3[1][0]}}, {{q3[2][0]}}],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Frequency'
+          }
+        }]
+      }
+    }
+});
+</script>
+
+<br>
+<br>
+
+<!-- Question 4 -->
+
+
+<canvas id="myChart3"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart3').getContext('2d');
+ctx.canvas.width = 1000;
+ctx.canvas.height = 300;
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ["No", "Yes"],
+        datasets: [{
+            label: "Do you have any other pets?",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{{q4[0][0]}}, {{q4[1][0]}}],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Frequency'
+          }
+        }]
+      }
+    }
+});
+</script>
+
+<br>
+<br>
+
+
+
+<!-- Question 5 -->
+<canvas id="myChart4"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart4').getContext('2d');
+ctx.canvas.width = 1000;
+ctx.canvas.height = 300;
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ["No", "Yes"],
+        datasets: [{
+            label: "Would you like to see the secret question?",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{q5[0][0]}}, {{q5[1][0]}},
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Frequency'
+          }
+        }]
+      }
+    }
+});
+</script>
+
+<br>
+<br>
+
+<!-- Question 6 -->
+<canvas id="myChart5"></canvas>
+
+<script>
+var ctx = document.getElementById('myChart5').getContext('2d');
+ctx.canvas.width = 1000;
+ctx.canvas.height = 300;
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ["No", "Yes"],
+        datasets: [{
+            label: "Are you a dog person?",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{{q6[0][0]}}, {{q6[1][0]}}],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Frequency'
+          }
+        }]
+      }
+    }
+});
+</script>
+
+<br>
+<br>
+
+
+<!--Time series chart -->
+
+<div style="width:1000px">
+		<canvas id="chart1"></canvas>
+	</div>
+	<br>
+	<br>
+	Chart Type:
+	<select id="type">
+		<option value="line">Line</option>
+		<option value="bar">Bar</option>
+	</select>
+	<button id="update">update</button>
+	<script>
+		function randomNumber(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		function randomBar(date, lastClose) {
+			//var open = randomNumber(lastClose * 0.95, lastClose * 1.05);
+			//var close = randomNumber(open * 0.95, open * 1.05);
+      var close = 5;
+			return {
+				t: date.valueOf(),
+				y: close
+			};
+		}
+
+		var dateFormat = 'MMMM DD YYYY';
+		var date = moment('Oct 04 2018', dateFormat);
+		var data = [randomBar(date, 30)];
+		var labels = [date];
+		while (data.length < 15) {
+			date = date.clone().add(1, 'd');
+			if (date.isoWeekday() <= 5) {
+				data.push(randomBar(date, data[data.length - 1].y));
+				labels.push(date);
+			}
+		}
+
+		var ctx = document.getElementById('chart1').getContext('2d');
+		ctx.canvas.width = 1000;
+		ctx.canvas.height = 300;
+		var cfg = {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: [{
+					label: 'Survey responses per day',
+					data: data,
+					type: 'line',
+					pointRadius: 0,
+					fill: false,
+					lineTension: 0,
+					borderWidth: 2
+				}]
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						type: 'time',
+						distribution: 'series',
+						ticks: {
+							source: 'labels'
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Number of responses'
+						}
+					}]
+				}
+			}
+		};
+		var chart = new Chart(ctx, cfg);
+
+		document.getElementById('update').addEventListener('click', function() {
+			var type = document.getElementById('type').value;
+			chart.config.data.datasets[0].type = type;
+			chart.update();
+		});
+
+	</script>
+
+
+
+
+{% endblock %}
