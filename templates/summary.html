@@ -259,7 +259,7 @@ var chart = new Chart(ctx, {
 
 		var dateFormat = 'MMMM DD YYYY';
 		var date = moment('Oct 04 2018', dateFormat);
-		var data = [randomBar(date, 30)];
+		var data = [randomBar(date, 30)]; //TODO you will need to edit this line to add the survey responses per day
 		var labels = [date];
 		while (data.length < 15) {
 			date = date.clone().add(1, 'd');
