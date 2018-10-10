@@ -1,5 +1,5 @@
 import os
-
+import datetime
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 import psycopg2
 
@@ -36,6 +36,7 @@ def thanks():
         app.logger.info(f"q4: {q4}")
         q5 = request.form['q5']
         app.logger.info(f"q5: {q5}")
+        day = datetime.datetime.today().strftime('%Y-%m-%d')
 
         if (q5 == "No."):
             with db.get_db_cursor(commit=True) as cur:
@@ -46,7 +47,7 @@ def thanks():
             app.logger.info(f"q6: {q6}")
 
             with db.get_db_cursor(commit=True) as cur:
-                cur.execute("insert into survey (q1, q2, q3, q4, q5, q6) values (%s, %s, %s, %s, %s, %s)", (q1, q2, q3, q4, q5, q6,))
+                cur.execute("insert into survey (q1, q2, q3, q4, q5, q6, day) values (%s, %s, %s, %s, %s, %s, %s)", (q1, q2, q3, q4, q5, q6, day,))
 
         return redirect(url_for("thanks"))
     else:
@@ -81,15 +82,19 @@ def admin_summary():
         cur.execute(query6)
         q6 = cur.fetchall()
 
+        query7 = "SELECT COUNT(*), S.day FROM survey S GROUP BY S.day"
+        cur.execute(query7)
+        day = cur.fetchall()
+
         app.logger.info(f"Q1: {q1}")
         app.logger.info(f"Q2: {q2}")
         app.logger.info(f"Q3: {q3}")
         app.logger.info(f"Q4: {q4}")
         app.logger.info(f"Q5: {q5}")
         app.logger.info(f"Q6: {q6}")
+        app.logger.info(f"Date: {day}")
 
-
-    return render_template("summary.html", q1=q1, q2=q2, q3=q3, q4=q4, q5=q5, q6=q6)
+    return render_template("summary.html", q1=q1, q2=q2, q3=q3, q4=q4, q5=q5, q6=q6, day=day)
 
 @app.route('/api/results')
 def api_results():

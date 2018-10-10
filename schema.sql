@@ -7,5 +7,6 @@ create table survey(
   q3 varchar(255),
   q4 varchar(255),
   q5 varchar(255),
-  q6 varchar(255)
+  q6 varchar(255),
+  day varchar(255)
 );

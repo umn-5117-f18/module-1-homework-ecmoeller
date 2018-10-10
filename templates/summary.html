@@ -57,6 +57,10 @@ var chart = new Chart(ctx, {
           scaleLabel: {
             display: true,
             labelString: 'Frequency'
+          },
+          ticks: {
+            beginAtZero: true,
+            max: 10
           }
         }]
       }
@@ -81,7 +85,7 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ["Yes", "No, but I want a dog", "No"],
+        labels: ["No", "No, but I want a dog", "Yes"],
         datasets: [{
             label: "Do you have a dog?",
             backgroundColor: 'rgb(255, 99, 132)',
@@ -97,6 +101,10 @@ var chart = new Chart(ctx, {
           scaleLabel: {
             display: true,
             labelString: 'Frequency'
+          },
+          ticks: {
+            beginAtZero: true,
+            max: 10
           }
         }]
       }
@@ -138,6 +146,10 @@ var chart = new Chart(ctx, {
           scaleLabel: {
             display: true,
             labelString: 'Frequency'
+          },
+          ticks: {
+            beginAtZero: true,
+            max: 10
           }
         }]
       }
@@ -151,39 +163,11 @@ var chart = new Chart(ctx, {
 
 
 <!-- Question 5 -->
+
 <canvas id="myChart4"></canvas>
 
 <script>
-var ctx = document.getElementById('myChart4').getContext('2d');
-ctx.canvas.width = 1000;
-ctx.canvas.height = 300;
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
 
-    // The data for our dataset
-    data: {
-        labels: ["No", "Yes"],
-        datasets: [{
-            label: "Would you like to see the secret question?",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: {{q5[0][0]}}, {{q5[1][0]}},
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Frequency'
-          }
-        }]
-      }
-    }
-});
 </script>
 
 <br>
@@ -218,6 +202,10 @@ var chart = new Chart(ctx, {
           scaleLabel: {
             display: true,
             labelString: 'Frequency'
+          },
+          ticks: {
+            beginAtZero: true,
+            max: 10
           }
         }]
       }
@@ -247,24 +235,38 @@ var chart = new Chart(ctx, {
 			return Math.random() * (max - min) + min;
 		}
 
-		function randomBar(date, lastClose) {
-			//var open = randomNumber(lastClose * 0.95, lastClose * 1.05);
-			//var close = randomNumber(open * 0.95, open * 1.05);
-      var close = 5;
+		function getPerDay(date) {
+
+      //search for that date in
+      var found = false;
+      var value = 0;
+
+      {% for i in day %}
+        var tmpDay = {{i[1]}};
+        var tmp = moment("{{i[1]}}", "YYYY-MM-DD");
+        if(tmp == date){
+          value = {{i[0]}};
+        }
+      {% endfor %}
+
 			return {
 				t: date.valueOf(),
-				y: close
+				y: value
 			};
 		}
 
-		var dateFormat = 'MMMM DD YYYY';
-		var date = moment('Oct 04 2018', dateFormat);
-		var data = [randomBar(date, 30)]; //TODO you will need to edit this line to add the survey responses per day
+		var dateFormat = "YYYY-MM-DD";
+		var date = moment('2018-10-07', dateFormat);
+
+    var otherdate = moment("{{day[0][1]}}", "YYYY-MM-DD")
+    console.log("Here is date: " + date)
+    console.log("Here is day {{day[0][1]}}")
+		var data = [getPerDay(date)]; //TODO you will need to edit this line to add the survey responses per day
 		var labels = [date];
 		while (data.length < 15) {
 			date = date.clone().add(1, 'd');
 			if (date.isoWeekday() <= 5) {
-				data.push(randomBar(date, data[data.length - 1].y));
+				data.push(getPerDay(date));
 				labels.push(date);
 			}
 		}
