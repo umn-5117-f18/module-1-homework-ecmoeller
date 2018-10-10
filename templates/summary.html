@@ -6,7 +6,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-	<script src="../../utils.js"></script>
 	<style>
 		canvas {
 			-moz-user-select: none;
@@ -60,7 +59,7 @@ var chart = new Chart(ctx, {
           },
           ticks: {
             beginAtZero: true,
-            max: 10
+            max: 20
           }
         }]
       }
@@ -104,7 +103,7 @@ var chart = new Chart(ctx, {
           },
           ticks: {
             beginAtZero: true,
-            max: 10
+            max: 20
           }
         }]
       }
@@ -149,7 +148,7 @@ var chart = new Chart(ctx, {
           },
           ticks: {
             beginAtZero: true,
-            max: 10
+            max: 20
           }
         }]
       }
@@ -167,6 +166,39 @@ var chart = new Chart(ctx, {
 <canvas id="myChart4"></canvas>
 
 <script>
+var ctx = document.getElementById('myChart4').getContext('2d');
+ctx.canvas.width = 1000;
+ctx.canvas.height = 300;
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+    // The data for our dataset
+    data: {
+        labels: ["No", "Yes"],
+        datasets: [{
+            label: "Would you like to see the secret question?",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{{q5[0][0]}}, {{q5[1][0]}}],
+        }]
+    },
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Frequency'
+          },
+          ticks: {
+            beginAtZero: true,
+            max: 20
+          }
+        }]
+      }
+    }
+});
+
 
 </script>
 
@@ -205,7 +237,7 @@ var chart = new Chart(ctx, {
           },
           ticks: {
             beginAtZero: true,
-            max: 10
+            max: 20
           }
         }]
       }
