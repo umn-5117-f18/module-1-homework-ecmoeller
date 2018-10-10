@@ -242,9 +242,10 @@ var chart = new Chart(ctx, {
       var value = 0;
 
       {% for i in day %}
-        var tmpDay = {{i[1]}};
         var tmp = moment("{{i[1]}}", "YYYY-MM-DD");
-        if(tmp == date){
+        console.log("val: " + tmp);
+        if(tmp.isSame(date)){
+          console.log("FOUND A MATCH");
           value = {{i[0]}};
         }
       {% endfor %}
@@ -259,9 +260,11 @@ var chart = new Chart(ctx, {
 		var date = moment('2018-10-07', dateFormat);
 
     var otherdate = moment("{{day[0][1]}}", "YYYY-MM-DD")
-    console.log("Here is date: " + date)
-    console.log("Here is day {{day[0][1]}}")
-		var data = [getPerDay(date)]; //TODO you will need to edit this line to add the survey responses per day
+    //console.log("Here is date: " + date)
+    //console.log("Here is day {{day[0][1]}}")
+    oct = moment("2018-10-09", "YYYY-MM-DD");
+    console.log("Here is the value for october 9th " + oct);
+		var data = [getPerDay(date)];
 		var labels = [date];
 		while (data.length < 15) {
 			date = date.clone().add(1, 'd');
