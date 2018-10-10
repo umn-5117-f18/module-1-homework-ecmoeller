@@ -293,7 +293,7 @@ var chart = new Chart(ctx, {
 
 		var data = [getPerDay(date)];
 		var labels = [date];
-		while (data.length < 15) {
+		while (data.length < 25) {
 			date = date.clone().add(1, 'd');
 			if (date.isoWeekday() <= 5) {
 				data.push(getPerDay(date));
