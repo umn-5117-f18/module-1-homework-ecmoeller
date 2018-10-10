@@ -26,28 +26,48 @@ def decline():
 @app.route("/thanks", methods=['GET', 'POST'])
 def thanks():
     if request.method == 'POST':
-        q1 = request.form['q1']
-        app.logger.info(f"q1: {q1}")
-        q2 = request.form['q2']
-        app.logger.info(f"q2: {q2}")
-        q3 = request.form['q3']
-        app.logger.info(f"q3: {q3}")
-        q4 = request.form['q4']
-        app.logger.info(f"q4: {q4}")
-        q5 = request.form['q5']
-        app.logger.info(f"q5: {q5}")
-        day = datetime.datetime.today().strftime('%Y-%m-%d')
+        try:
+            q1 = request.form['q1']
+            app.logger.info(f"q1: {q1}")
+        except:
+            #TODO
+            q1 = None
 
-        if (q5 == "No."):
-            with db.get_db_cursor(commit=True) as cur:
-                cur.execute("insert into survey (q1, q2, q3, q4, q5) values (%s, %s, %s, %s, %s)", (q1, q2, q3, q4, q5,))
+        try:
+            q2 = request.form['q2']
+            app.logger.info(f"q2: {q2}")
+        except:
+            q2 = None
 
-        else:
+        try:
+            q3 = request.form['q3']
+            app.logger.info(f"q3: {q3}")
+        except:
+            q3 = None
+
+
+        try:
+            q4 = request.form['q4']
+            app.logger.info(f"q4: {q4}")
+        except:
+            q4 = None
+
+        try:
+            q5 = request.form['q5']
+            app.logger.info(f"q5: {q5}")
+        except:
+            q5 = None
+
+        try:
             q6 = request.form['q6']
             app.logger.info(f"q6: {q6}")
+        except:
+            q6 = None
 
-            with db.get_db_cursor(commit=True) as cur:
-                cur.execute("insert into survey (q1, q2, q3, q4, q5, q6, day) values (%s, %s, %s, %s, %s, %s, %s)", (q1, q2, q3, q4, q5, q6, day,))
+        day = datetime.datetime.today().strftime('%Y-%m-%d')
+
+        with db.get_db_cursor(commit=True) as cur:
+            cur.execute("insert into survey (q1, q2, q3, q4, q5, q6, day) values (%s, %s, %s, %s, %s, %s, %s)", (q1, q2, q3, q4, q5, q6, day,))
 
         return redirect(url_for("thanks"))
     else:
